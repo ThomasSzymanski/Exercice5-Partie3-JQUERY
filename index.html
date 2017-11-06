@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="jquery-3.2.1.js"></script>
+  <title>Exercice 5</title>
+</head>
+<body>
+  <form>
+    <input type="text" name="input" value="BONJOUR !" id="input"/>
+    <div id="square" style="width:100px;height:100px;background-color:red"></div>
+  </form>
+  <script>
+    $(function(){
+      $('input').keydown(function(e){
+        if (e.keyCode == 37) {
+          $('#square').css('margin-left', '-=10px');
+        }
+         if (e.keyCode == 39) {
+          $('#square').css('margin-left', '+=10px');
+        }
+        if (e.keyCode == 38) {
+          $('#square').css('margin-top', '-=10px');
+        }
+        if (e.keyCode == 40) {
+          $('#square').css('margin-top', '+=10px');
+        }
+        if ($('#square').offset().left >= 1900) {
+          $('#square').css('margin-left' , '0px');
+        } if ($('#square').offset().left <= 4) {
+          $('#square').css('margin-left' , '1900px');
+        } if ($('#square').offset().top >= 980) {
+          $('#square').css('margin-top' , '0px');
+        } if ($('#square').offset().top <= 0) {
+          $('#square').css('margin-top' , '900px');
+        }
+      });
+    });
+  </script> 
+</body>
+</html>
