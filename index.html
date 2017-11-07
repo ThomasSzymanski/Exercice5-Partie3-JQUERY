@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <script src="jquery-3.2.1.js"></script>
-  <title>Exercice 5</title>
-</head>
-<body>
-  <form>
-    <input type="text" name="input" value="BONJOUR !" id="input"/>
-    <div id="square" style="width:100px;height:100px;background-color:red"></div>
-  </form>
-  <script>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Exo 5 Correction</title>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="text">
+      <div id="square"></div>
+    </form>
+    <script>
     $(function(){
-      $('input').keydown(function(e){
-        if (e.keyCode == 37) {
-          $('#square').css('margin-left', '-=10px');
-        }
-         if (e.keyCode == 39) {
-          $('#square').css('margin-left', '+=10px');
-        }
-        if (e.keyCode == 38) {
-          $('#square').css('margin-top', '-=10px');
-        }
-        if (e.keyCode == 40) {
-          $('#square').css('margin-top', '+=10px');
-        }
-        if ($('#square').offset().left >= 1900) {
-          $('#square').css('margin-left' , '0px');
-        } if ($('#square').offset().left <= 0) {
-          $('#square').css('margin-left' , '1900px');
-        } if ($('#square').offset().top >= 980) {
-          $('#square').css('margin-top' , '0px');
-        } if ($('#square').offset().top <= 0) {
-          $('#square').css('margin-top' , '900px');
+      //On déterminer la largeur de la fenêtre
+      var widthWindow = $(window).width();
+      //On détermine la hauteur de la fenêtre
+      var heightWindow = $(window).height();
+      //Losqu'on appuie sur une touche
+      $('#text').keydown(function(e){
+        //On détermine la postion horizontal de la div
+        var positionSquareX = $('#square').offset().left;
+        //On détermine la positon vertical de la div
+        var positionSquareY = $('#square').offset().top;
+        switch (e.keyCode) { //e.keyCode = valeur d'une touche de clavier
+          case 39://touche droite
+          case 68://touche d
+          //Si la positon horizontal et plus grand ou égale a la largeur de l'écran
+          if(positionSquareX >= (widthWindow-105)){
+            //Le carrer a un margin a 0
+            $('#square').css('margin-left', '0');
+          }else {
+            // Sinon le carre gagne 10px en margin left
+            $('#square').css('margin-left', '+=10px');
+          }
+          break;
+          case 37://touche gauche
+          case 81://touche q
+          if(positionSquareX <= 0){
+            $('#square').css('margin-left', widthWindow-105);
+          }else {
+            $('#square').css('margin-left', '-=10px');
+          }
+          break;
+          case 38://touche haut
+          case 90://touche z
+          //Si la postion Verticale est inférieur ou égale a 0
+          if(positionSquareY <= 0){
+            //Le carrer auras un margin-top équibalent a la hauteur-125
+            $('#square').css('margin-top', heightWindow-125);
+            //Sinon margin-top auras +10
+          }else {
+            $('#square').css('margin-top', '-=10px');
+          }
+          break;
+          case 40://touche bas
+          case 83://touche s
+          if(positionSquareY >= (heightWindow-105)){
+            $('#square').css('margin-top', '0');
+          }else {
+            $('#square').css('margin-top', '+=10px');
+          }
+          break;
         }
       });
     });
-  </script> 
-</body>
+    </script>
+  </body>
 </html>
